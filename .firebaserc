@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "mini-dashboard-3800f": {
+      "hosting": {
+        "dashboard": [
+          "mini-dashboard-3800f"
+        ]
+      }
+    }
+  }
+}
