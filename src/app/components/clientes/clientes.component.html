@@ -57,7 +57,7 @@
         </div>
       </div>
 
-      <div class="card text-white bg-warning">
+      <div class="card bg-info">
         <div class="card-body text-center">
           Saldo Total
           <h5 class="font-weight-bold">
@@ -68,3 +68,81 @@
     </div>
   </div>
 </section>
+
+<!-- Modal para nuevo cliente -->
+<div
+  class="modal fade"
+  id="nuevoCliente"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nuevo Cliente</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form [formGroup]="form" (submit)="guardarCliente()">
+        <div class="modal-body">
+          <input
+            formControlName="nombre"
+            type="text"
+            [class.is-invalid]="getField('nombre').invalid && getField('nombre').touched"
+            [class.is-valid]="!getField('nombre').invalid"
+            class="form-control my-3"
+            placeholder="Nombre"
+          />
+
+          <input
+            formControlName="apellido"
+            type="text"
+            [class.is-invalid]="getField('apellido').invalid && getField('apellido').touched"
+            [class.is-valid]="!getField('apellido').invalid"
+            class="form-control my-3"
+            placeholder="Apellido"
+          />
+
+          <input
+            formControlName="email"
+            type="email"
+            [class.is-invalid]="getField('email').invalid && getField('email').touched"
+            [class.is-valid]="!getField('email').invalid"
+            class="form-control my-3"
+            placeholder="Email"
+          />
+
+          <input
+            formControlName="saldo"
+            type="number"
+            [class.is-invalid]="getField('saldo').invalid && getField('saldo').touched"
+            [class.is-valid]="!getField('saldo').invalid"
+            class="form-control my-3"
+            placeholder="Saldo"
+          />
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Cancelar
+          </button>
+          <button
+            [disabled]="!form.valid"
+            type="submit"
+            class="btn btn-primary"
+          >
+            Agregar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
