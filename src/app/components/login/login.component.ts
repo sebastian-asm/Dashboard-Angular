@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
   }
 
   ingresar() {
-    console.log(this.form.value);
     this.login
       .login(this.form.value)
       .then(() => this.router.navigateByUrl('/'))
