@@ -1,1 +1,67 @@
-<p>clientes works!</p>
+<section class="container">
+  <div class="row">
+    <div class="col mb-4">
+      <a
+        href=""
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#nuevoCliente"
+      >
+        Nuevo Cliente
+      </a>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="text-center m-4">
+    <div class="spinner-border text-warning" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+  <div *ngIf="!loading" class="row">
+    <div class="col-sm-12 col-md-9">
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Email</th>
+            <th scope="col">Saldo</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cliente of clientes; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ cliente.nombre }} {{ cliente.apellido }}</td>
+            <td>{{ cliente.email }}</td>
+            <td>{{ cliente.saldo | currency: '$' }}</td>
+            <td>
+              <a
+                [routerLink]="['/cliente/editar/', cliente.id]"
+                class="btn btn-success btn-sm mr-1"
+                >Editar</a
+              >
+              <button class="btn btn-danger btn-sm ml-1">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-sm-12 col-md-3">
+      <div class="card">
+        <div class="card-header font-weight-bold">
+          Totales
+        </div>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Total Clientes: <strong>{{ clientes?.length }}</strong>
+          </li>
+          <li class="list-group-item">Saldo Total: <strong></strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
