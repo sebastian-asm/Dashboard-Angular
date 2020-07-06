@@ -24,7 +24,15 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Verificando si el usuario esta autenticado para no mostrar nuevamente el login
+    // y direccionar al inicio
+    this.login.getAuth().subscribe((resp) => {
+      if (resp) {
+        this.router.navigateByUrl('/');
+      }
+    });
+  }
 
   getField(field: string) {
     return this.form.get(field);
