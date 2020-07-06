@@ -21,4 +21,15 @@ export class ClientesComponent implements OnInit {
       this.loading = false;
     });
   }
+
+  getSaldoTotal(): number {
+    let saldoTotal: number = 0;
+    if (this.clientes) {
+      this.clientes.forEach((cliente) => {
+        saldoTotal += cliente.saldo;
+      });
+    }
+
+    return saldoTotal;
+  }
 }

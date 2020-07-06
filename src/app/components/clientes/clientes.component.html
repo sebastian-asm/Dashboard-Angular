@@ -50,17 +50,20 @@
     </div>
 
     <div class="col-sm-12 col-md-3">
-      <div class="card">
-        <div class="card-header font-weight-bold">
-          Totales
+      <div class="card bg-info mb-4">
+        <div class="card-body text-center">
+          Total Clientes
+          <h5 class="font-weight-bold">{{ clientes?.length }}</h5>
         </div>
+      </div>
 
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            Total Clientes: <strong>{{ clientes?.length }}</strong>
-          </li>
-          <li class="list-group-item">Saldo Total: <strong></strong></li>
-        </ul>
+      <div class="card text-white bg-warning">
+        <div class="card-body text-center">
+          Saldo Total
+          <h5 class="font-weight-bold">
+            {{ getSaldoTotal() | currency: '$' }}
+          </h5>
+        </div>
       </div>
     </div>
   </div>
