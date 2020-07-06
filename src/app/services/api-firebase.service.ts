@@ -36,4 +36,8 @@ export class ApiFirebaseService {
       })
     ));
   }
+
+  addCliente(cliente: Cliente) {
+    this.clientesCollection.add(cliente);
+  }
 }

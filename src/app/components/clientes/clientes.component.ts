@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { ApiFirebaseService } from '../../services/api-firebase.service';
@@ -10,6 +10,8 @@ import { Cliente } from 'src/app/interfaces/cliente';
   styleUrls: ['./clientes.component.css'],
 })
 export class ClientesComponent implements OnInit {
+  @ViewChild('cerrarModal') cerrarModal: ElementRef;
+
   clientes: Array<Cliente>;
   loading: boolean;
   form: FormGroup;
@@ -39,8 +41,12 @@ export class ClientesComponent implements OnInit {
   }
 
   guardarCliente() {
-    // if (this.form.invalid || this.form.status === 'INVALID') return;
-    console.log(this.form.value);
+    if (this.form.invalid || this.form.status === 'INVALID') return;
+
+    this.api.addCliente(this.form.value);
+    this.form.reset();
+    // Haciendo referencia al click del botón para cerrar el modal
+    this.cerrarModal.nativeElement.click();
   }
 
   getSaldoTotal(): number {
