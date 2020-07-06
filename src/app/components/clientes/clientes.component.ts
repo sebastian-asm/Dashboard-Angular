@@ -19,16 +19,16 @@ export class ClientesComponent implements OnInit {
   constructor(
     private api: ApiFirebaseService,
     private formBuilder: FormBuilder
-  ) {}
-
-  ngOnInit(): void {
+  ) {
     this.form = this.formBuilder.group({
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       saldo: ['', [Validators.required, Validators.pattern('[0-9]+')]],
     });
+  }
 
+  ngOnInit(): void {
     this.loading = true;
     this.api.getClientes().subscribe((resp) => {
       this.clientes = resp;
@@ -57,5 +57,9 @@ export class ClientesComponent implements OnInit {
       });
     }
     return saldoTotal;
+  }
+
+  eliminarCliente(id: string) {
+    this.api.deleteCliente(id);
   }
 }

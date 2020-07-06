@@ -1,1 +1,83 @@
-<p>editar-cliente works!</p>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Editar Cliente</h1>
+    <p class="lead">Editando los datos de un cliente.</p>
+  </div>
+</div>
+
+<section class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <form [formGroup]="form" (submit)="actualizarCliente()">
+          <div class="card-header text-right">
+            <button
+              (click)="eliminarCliente()"
+              type="submit"
+              class="btn btn-danger"
+            >
+              Eliminar
+            </button>
+          </div>
+
+          <div class="card-body">
+            <input
+              formControlName="nombre"
+              type="text"
+              [class.is-invalid]="getField('nombre').invalid && getField('nombre').touched"
+              [class.is-valid]="!getField('nombre').invalid"
+              class="form-control my-3"
+              placeholder="Nombre"
+            />
+
+            <input
+              formControlName="apellido"
+              type="text"
+              [class.is-invalid]="getField('apellido').invalid && getField('apellido').touched"
+              [class.is-valid]="!getField('apellido').invalid"
+              class="form-control my-3"
+              placeholder="Apellido"
+            />
+
+            <input
+              formControlName="email"
+              type="email"
+              [class.is-invalid]="getField('email').invalid && getField('email').touched"
+              [class.is-valid]="!getField('email').invalid"
+              class="form-control my-3"
+              placeholder="Email"
+            />
+
+            <input
+              formControlName="saldo"
+              type="number"
+              [class.is-invalid]="getField('saldo').invalid && getField('saldo').touched"
+              [class.is-valid]="!getField('saldo').invalid"
+              class="form-control my-3"
+              placeholder="Saldo"
+            />
+          </div>
+
+          <div class="card-footer text-center">
+            <a
+              routerLink="/"
+              type="button"
+              class="btn btn-secondary mr-2"
+              data-dismiss="modal"
+            >
+              Cancelar
+            </a>
+
+            <button
+              [disabled]="!form.valid"
+              type="submit"
+              class="btn btn-success ml-2"
+            >
+              Actualizar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

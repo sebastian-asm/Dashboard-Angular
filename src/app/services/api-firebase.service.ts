@@ -40,4 +40,30 @@ export class ApiFirebaseService {
   addCliente(cliente: Cliente) {
     this.clientesCollection.add(cliente);
   }
+
+  getCliente(id: string) {
+    // Recuperando el documento a través del id
+    this.clienteDocument = this.db.doc<Cliente>(`clientes/${id}`);
+    return (this.cliente = this.clienteDocument.snapshotChanges().pipe(
+      map((resp) => {
+        if (!resp.payload.exists) {
+          return null;
+        } else {
+          const data = resp.payload.data() as Cliente;
+          data.id = resp.payload.id;
+          return data;
+        }
+      })
+    ));
+  }
+
+  modifCliente(cliente: Cliente, id: string) {
+    this.clienteDocument = this.db.doc<Cliente>(`clientes/${id}`);
+    this.clienteDocument.update(cliente);
+  }
+
+  deleteCliente(id: string) {
+    this.clienteDocument = this.db.doc<Cliente>(`clientes/${id}`);
+    this.clienteDocument.delete();
+  }
 }
