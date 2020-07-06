@@ -1,1 +1,62 @@
-<p>login works!</p>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Ingresar</h1>
+    <p class="lead">Ingrese para tener acceso a la información.</p>
+  </div>
+</div>
+
+<section class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <form [formGroup]="form" (submit)="ingresar()">
+          <div class="card-body">
+            <input
+              formControlName="email"
+              type="email"
+              [class.is-invalid]="getField('email').invalid && getField('email').touched"
+              [class.is-valid]="!getField('email').invalid"
+              class="form-control my-3"
+              placeholder="Email"
+            />
+
+            <input
+              formControlName="password"
+              type="password"
+              [class.is-invalid]="getField('password').invalid && getField('password').touched"
+              [class.is-valid]="!getField('password').invalid"
+              class="form-control my-3"
+              placeholder="Password"
+            />
+
+            <div
+              *ngIf="error"
+              class="alert alert-danger alert-dismissible fade show"
+              role="alert"
+            >
+              Hubo un error en la autenticación, vuelva a intentar por favor.
+              <button
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="card-footer text-center">
+            <button
+              [disabled]="!form.valid"
+              type="submit"
+              class="btn btn-primary ml-2"
+            >
+              Ingresar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
