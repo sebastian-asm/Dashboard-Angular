@@ -14,8 +14,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="/">Inicio</a>
+        <li *ngIf="isLogin" routerLinkActive="active" class="nav-item">
+          <a routerLink="/" class="nav-link">Inicio</a>
+        </li>
+        <li *ngIf="!isLogin" routerLinkActive="active" class="nav-item">
+          <a routerLink="/signup" class="nav-link">Registrase</a>
         </li>
       </ul>
       <ul class="navbar-nav">

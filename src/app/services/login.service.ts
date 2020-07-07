@@ -28,4 +28,16 @@ export class LoginService {
   logout() {
     this.authService.signOut();
   }
+
+  signup(signup: any) {
+    // Al crear un nuevo usuario Firebase devuelve también una promesa
+    return new Promise((resolve, reject) => {
+      this.authService
+        .createUserWithEmailAndPassword(signup.email, signup.password)
+        .then(
+          (resp) => resolve(resp),
+          (err) => reject(err)
+        );
+    });
+  }
 }
