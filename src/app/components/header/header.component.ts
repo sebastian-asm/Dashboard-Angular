@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { LoginService } from 'src/app/services/login.service';
+import { ConfigService } from 'src/app/services/config.service';
 
 @Component({
   selector: 'app-header',
@@ -11,8 +12,13 @@ import { LoginService } from 'src/app/services/login.service';
 export class HeaderComponent implements OnInit {
   isLogin: boolean;
   userLogin: string;
+  permitirSignup: boolean;
 
-  constructor(private router: Router, private login: LoginService) {}
+  constructor(
+    private router: Router,
+    private login: LoginService,
+    private configService: ConfigService
+  ) {}
 
   ngOnInit(): void {
     this.login.getAuth().subscribe((resp) => {
@@ -23,6 +29,11 @@ export class HeaderComponent implements OnInit {
         this.isLogin = false;
       }
     });
+
+    // Obteniendo el estado para permitir nuevo registro o no
+    this.configService
+      .getConfig()
+      .subscribe((resp) => (this.permitirSignup = resp.permitirRegistro));
   }
 
   logout() {
